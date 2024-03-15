@@ -1,12 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:developer';
+
 import 'package:ecom_demo/add_text.dart';
 import 'package:ecom_demo/product_page.dart';
+import 'package:ecom_demo/push_notification/notifcation_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-
-import 'drawer.dart';
-
 class MainHomePage extends StatefulWidget {
   const MainHomePage({Key? key}) : super(key: key);
 
@@ -17,6 +18,62 @@ class MainHomePage extends StatefulWidget {
 class _MainHomePageState extends State<MainHomePage> {
   @override
   int currentIndex = 0;
+  FlutterLocalNotificationsPlugin localNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  getFcmToken() async {
+    var fcmToekn = await FirebaseMessaging.instance.getToken();
+    print("FCM TOEKN IS ${fcmToekn}");
+    // AndroidNotificationDetails androidNotificationDetails = const AndroidNotificationDetails(
+    //   "demo_10",
+    //   "demo_app",
+    //   priority: Priority.max,
+    //   playSound: true,
+    //   sound: RawResourceAndroidNotificationSound('ring'), // Default sound
+    //   importance: Importance.max,
+    // );
+    // NotificationDetails(android: androidNotificationDetails);
+  }
+
+  getInit() async{
+    RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    log("Kill messgae${initialMessage.toString()}");
+    // if(initialMessage != null && initialMessage.notification != null){
+    //   NotificationOnClickModel groupModal = NotificationOnClickModel.fromJson(jsonDecode(initialMessage.data["payload"]));
+    //
+    //   if(groupModal.screenType== 'chat'){
+    //     Get.toNamed(OrderDetails.route, arguments: [groupModal.orderId.toString()]);
+    //   } else if(groupModal.screenType== 'post_or_product_update'){
+    //     if (groupModal.isAnother == true) {
+    //       makingPhoneCall(groupModal.pLink.toString());
+    //     }else{
+    //       if(groupModal.isProduct == true ) {
+    //         Get.toNamed(SingleProductScreen.route, arguments: [groupModal.pId.toString()]);
+    //       }else{
+    //         makingPhoneCall(groupModal.pLink.toString());
+    //       }
+    //     }
+    //   }else {
+    //   }
+    // }
+  }
+
+  manageNotification() async {
+    print("functionnnnn callll");
+    getInit();
+    NotificationService.createNotificationChannel();
+
+
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    print("helloh");
+    getFcmToken();
+   // manageNotification();
+
+  }
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;

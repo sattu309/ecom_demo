@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import 'cart_screen.dart';
 import 'dimension.dart';
 
 class ProductPage extends StatefulWidget {
@@ -118,15 +119,21 @@ class _ProductPageState extends State<ProductPage> {
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: Colors.black12)
                     ),
-                    child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Size",
-                          style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15,color: Colors.black),),
-                        addWidth(30),
+                    child:
+                    GestureDetector(
+                      onTap: (){
+                        showChangeAddressSheet();
+                      },
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Size",
+                            style: TextStyle(fontWeight: FontWeight.w700,fontSize: 15,color: Colors.black),),
+                          addWidth(30),
 
-                        Icon(Icons.arrow_drop_down_sharp,color: Colors.black,)
-                      ],
+                          Icon(Icons.arrow_drop_down_sharp,color: Colors.black,)
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -205,7 +212,8 @@ class _ProductPageState extends State<ProductPage> {
                 padding: const EdgeInsets.all(12.0),
                 child: CommonButtonGreen(title: "Add to cart",
                 onPressed: (){
-                  showChangeAddressSheet();
+                  Get.to(CartScreen());
+
                 },
                 ),
               ),

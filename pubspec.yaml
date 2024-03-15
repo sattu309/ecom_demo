@@ -39,6 +39,17 @@ dependencies:
   carousel_slider: ^4.2.1
   cached_network_image:
   form_field_validator:
+  firebase_core: ^2.17.0
+  firebase_auth: ^4.10.1
+  firebase_messaging: ^14.7.19
+  flutter_local_notifications: ^17.0.0
+  permission_handler: ^11.3.0
+  http:
+  google_fonts:
+  geocoding: ^2.0.0
+  geolocator: ^11.0.0
+
+
 
 
 dev_dependencies:

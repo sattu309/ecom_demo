@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'all_category.dart';
-import 'cart.dart';
+import 'cart_screen.dart';
+import 'category.dart';
+import 'conttroller/get_current_location.dart';
 import 'conttroller/main_homecontroller.dart';
 import 'drawer.dart';
-import 'homepage.dart';
 import 'login_flow/signup.dart';
 import 'main_homepage.dart';
 
@@ -18,6 +19,16 @@ class MyNavigationBar extends StatefulWidget {
 
 class _MyNavigationBarState extends State<MyNavigationBar > {
   final controller = Get.put(MainHomeController());
+  final locationController = Get.put(LocationController());
+
+  @override
+  void initState() {
+    super.initState();
+    locationController.getLocation();
+    // locationController.getLocationNew();
+    // locationController.getApiLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,14 +67,24 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
                             controller.onItemTap(1);
                             //print("VALLLUUU"+controller.onItemTap(1));
                           },
-                          child: Icon(Icons.shopping_cart)
+                          child: Icon(Icons.category)
                         ),
-                        label: 'Shop',
+                        label: 'Category',
                       ),
                       BottomNavigationBarItem(
                         icon: InkWell(
                           onTap: () async {
                             controller.onItemTap(2);
+                            //print("VALLLUUU"+controller.onItemTap(1));
+                          },
+                          child: Icon(Icons.shopping_cart)
+                        ),
+                        label: 'Cart',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: InkWell(
+                          onTap: () async {
+                            controller.onItemTap(3);
 
                           },
                           child: Icon(Icons.favorite_border_rounded)
@@ -73,7 +94,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
                       BottomNavigationBarItem(
                           icon: GestureDetector(
                             onTap: () {
-                              controller.onItemTap(3);
+                              controller.onItemTap(5);
 
                             },
                             child: Icon(Icons.person_pin)
@@ -94,7 +115,8 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
               index: controller.currentIndex.value,
               children: const [
                 MainHomePage(),
-                Cart(),
+                CategoryPage(),
+                CartScreen(),
                 AllCategories(),
                 SignUpPage(),
               ],

@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Already have an account?",
+                    const Text("Already have an account?",
                       style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15,color: Color(0xff222222)),),
                     Image.asset("assets/images/arrow.png",),
                   ],

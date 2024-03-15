@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Forgot your password?",
+                    const Text("Forgot your password?",
                       style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15,color: Color(0xff222222)),),
                     Image.asset("assets/images/arrow.png",),
                   ],
@@ -75,11 +75,11 @@ class _LoginPageState extends State<LoginPage> {
               CommonButtonGreen(
                 title: 'LOGIN',
                 onPressed: (){
-                  Get.to(()=> MyNavigationBar());
+                  Get.offAll(()=> MyNavigationBar());
                 },
               ),
               addHeight(70),
-              Center(
+              const Center(
                 child: Text("Or sign up with social account",
                   style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Color(0xff222222)),),
               ),
@@ -100,9 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   addWidth(40),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25,vertical: 7),
+                    padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 7),
                     decoration: BoxDecoration(
-                      color: Color(0xffFFFFFF),
+                      color: const Color(0xffFFFFFF),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Padding(
